@@ -23,9 +23,10 @@ function App() {
   const handleOcultarForm = () => setFormOn(prev => !prev)
 
   const [itemAtual, setItemAtual] = useState<ItemEstoque>(null)
-  
+
   const selectItem = (id: number) => {
     const item = listaItens.find((it: ItemEstoque) => it.id === id);
+    console.log("~selectItem ~item:", item);
     if (item) {
       setItemAtual(item);
     }

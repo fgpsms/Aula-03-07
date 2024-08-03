@@ -17,16 +17,17 @@ export const FormularioAdicionarItem = ({ itemParaEditar, editIten, adicionarIte
 
 const[edicao, setEdicao] = useState<boolean>(false)
   useEffect(() => {
-    setEdicao(true)
     setNovoItem(itemParaEditar);
+    setEdicao(true)
   }, [itemParaEditar]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setNovoItem((prevItem) => ({
+    setNovoItem(prevItem => ({
       ...prevItem,
-      [name]:
-        name === "quantidade" || name === "preco" ? parseFloat(value) : value,
+      [name] : name === "quantidade" 
+        || name === "preco" 
+        ? parseFloat(value) : value,
     }));
   };
 
@@ -54,7 +55,7 @@ const[edicao, setEdicao] = useState<boolean>(false)
   };
 
   return (
-    <form onSubmit={!!itemParaEditar ? handleUpdate : handleSubmit}>
+    <form onSubmit={edicao ? handleUpdate : handleSubmit}>
       <div>
         <label> Produto: </label>
         <input
@@ -83,7 +84,7 @@ const[edicao, setEdicao] = useState<boolean>(false)
           step="0.01"
         />
       </div>
-      <button type="submit"> Adicionar Item</button>
+      <button type="submit"> {edicao ? "Editar Item" :  "Adicionar Item"}</button>
     </form>
   );
 }; 
