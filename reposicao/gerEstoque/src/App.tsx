@@ -37,8 +37,9 @@ const editarItem = (item: ItemEstoque) => {
   setListaItens([item, ...restoLista])
 };
   return (
-    <>
-      <button onClick={() => handleOcultarForm()}>
+    <div className="mt-4 bg-slate-100 p-4">
+      <h1 className="text-2xl font-bold text-slate-800"></h1>
+      <button className="rounded-sm bg-slate-600 p-2" onClick={() => handleOcultarForm()}>
         {formOn ? "Ocultar" : "Exibir"}
       </button>
       {formOn && (
@@ -54,7 +55,7 @@ const editarItem = (item: ItemEstoque) => {
         handleDelItens={deleteItens}
         handleSelectItem={selectItem}
       />
-    </>
+    </div>
   );
 }
 export default App

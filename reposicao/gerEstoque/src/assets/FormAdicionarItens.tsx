@@ -17,9 +17,11 @@ export const FormularioAdicionarItem = ({ itemParaEditar, editIten, adicionarIte
 
 const[edicao, setEdicao] = useState<boolean>(false)
   useEffect(() => {
+  if(itemParaEditar !== null) {
     setNovoItem(itemParaEditar);
-    setEdicao(true)
-  }, [itemParaEditar]);
+    setEdicao(true);
+  [itemParaEditar]}  
+  });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
