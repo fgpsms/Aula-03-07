@@ -18,12 +18,42 @@ function App() {
   const addItem = (item: ItemEstoque) => {
     setListaItens((prevItens) => [item, ...prevItens]);
   };
+
+  const [formOn, setFormOn] = useState<boolean>(false);
+  const handleOcultarForm = () => setFormOn(prev => !prev)
+
+  const [itemAtual, setItemAtual] = useState<ItemEstoque>(null)
+  
+  const selectItem = (id: number) => {
+    const item = listaItens.find((it: ItemEstoque) => it.id === id);
+    if (item) {
+      setItemAtual(item);
+    }
+  };
+
+const editarItem = (item: ItemEstoque) => {
+  const restoLista = listaItens.filter((it: ItemEstoque) => it.id !== item.id)
+  setListaItens([item, ...restoLista])
+};
   return (
     <>
-      <FormularioAdicionarItem adiconarItem={addItem} />
-      <ListaItens listaItens={listaItens} handDelItens={deleteItens} />
+      <button onClick={() => handleOcultarForm()}>
+        {formOn ? "Ocultar" : "Exibir"}
+      </button>
+      {formOn && (
+        <FormularioAdicionarItem
+          adicionarItem={addItem}
+          editItem={editarItem}
+          itemParaEditar={itemAtual}
+        />
+      )}
+
+      <ListaItens
+        listaItens={listaItens}
+        handleDelItens={deleteItens}
+        handleSelectItem={selectItem}
+      />
     </>
   );
 }
-
-export default App;
+export default App
